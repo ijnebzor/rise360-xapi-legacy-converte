@@ -1,4 +1,6 @@
+----
 **🚑 Rise360 Legacy xAPI Converter (Community Fix)**
+----
 
 This repository contains a **community-created**, **unofficial tool** to convert the new post-December-2025 Rise360 xAPI export structure back into the legacy layout and behaviour required by many LMS platform.
 Created with assistance from LLM tooling. Shared freely for anyone impacted by the recent Rise360 file-structure changes.
@@ -13,7 +15,9 @@ This repository contains a converter script that transforms any new Rise360 xAPI
 
 If your LMS suddenly stopped tracking completions, refused uploads, or returned blank screens after the Rise update, this tool is for you.
 
+----
 **⚠️ Disclaimer**
+----
 - This is not an official tool.
 - It is not supported or endorsed by Articulate.
 - It is provided as-is, without guarantee.
@@ -22,7 +26,9 @@ If your LMS suddenly stopped tracking completions, refused uploads, or returned 
 
 If this solves your problem, amazing. If not, feel free to fork, modify, and improve.
 
+----
 **🧠 How It Works**
+----
 
 When you run the converter, it will:
 1. Flatten the new Rise export into an old-style folder structure
@@ -37,9 +43,10 @@ The resulting course:
 - Tracks completion in SCORM Cloud **and** LMS platforms expecting the legacy Rise behaviour
 - Restores LRS events required for certificates or state-dependent flows
 
-
+----
 **📦 Folder Structure**
-Your repository should contain:
+----
+```Your repository should contain:
 Rise360-XAPI-Converter/
 │
 ├── fix_scorm_package.py        # Main converter script
@@ -53,7 +60,7 @@ Rise360-XAPI-Converter/
 │
 └── OUTPUT_FOLDER/              # The final converted xAPI package will be generated here
     └── .keep
-
+```
 The DONOR_PACKAGE_FOLDER should contain your own pre-December-2025 working Rise360 xAPI export.
 This is needed because Articulate removed the tincan.js and lms.js files from new packages, but the logic in those files is still required by many LMSs.
 
@@ -63,7 +70,7 @@ Folders contain .keep files so GitHub preserves directory structure.
 
 **Nothing in this repo contains real course content.**
 
-**🚀 How to Use**
+
 ----
 🛠 Setup Steps
 ----
@@ -118,10 +125,61 @@ Folders contain .keep files so GitHub preserves directory structure.
 6. The resulting ZIP file is your final TinCan/xAPI package.
    Upload it to your LMS exactly as you would with a normal Rise360 export.
 
+
+
+🧪 What the Converter Fixes
+- Missing **tincan.js**
+- Missing **lms.js**
+- Updated Rise player referencing **window.parent** instead of LMSProxy
+- Invalid or missing **index_lms.html**
+- Incorrect launch path in **tincan.xml**
+- Removal of legacy LMSProxySelections routing
+- New file tree (**scormcontent/** + **scormdriver/**) flattened to old style
+- 
+The final package behaves as if built in Rise before the breaking change.
+
 ----
 **✅ Screenshots**
 ----
 COMMAND: <img width="740" height="29" alt="image" src="https://github.com/user-attachments/assets/ea78e906-22d3-4536-81dc-5cd12893ab0c" />
 PROCESS: <img width="613" height="266" alt="image" src="https://github.com/user-attachments/assets/8526271a-10f3-457c-ac48-a97c0e19eac6" />
 DIAGNOSIS: <img width="2000" height="859" alt="image" src="https://github.com/user-attachments/assets/3c8988d1-bc54-40bb-9f85-d69bc98f9264" />
+ONEDRIVE ERROR (see below): <img width="879" height="46" alt="image" src="https://github.com/user-attachments/assets/6a215b2e-ec7e-4c3e-a57c-5c21dd126b6d" />
 
+---
+**⚠️ Known Issues**
+---
+### OneDrive / WinError 5 (`Access is denied: 'OUTPUT_FOLDER'`)
+OneDrive can cause issues and say 'ACCESS DENIED' to folders, you may need to do this in a folder not being backed up by OneDrive (only if you have issues).**
+
+If you run the script from a OneDrive-synced Desktop or folder, Windows can prevent
+the script from deleting or recreating the `OUTPUT_FOLDER`. This shows up as:
+
+`PermissionError: [WinError 5] Access is denied: 'OUTPUT_FOLDER'`
+
+**Workarounds:**
+- Move the converter folder to a non-OneDrive location (e.g. `C:\Rise360Converter`), or
+- Pause OneDrive sync while running the scripts.
+
+----
+**📄 LICENSE**
+----
+This project is licensed under the MIT License.
+You are free to use, modify, fork, and distribute as needed.
+
+See the LICENSE file for details.
+
+----
+**🗣 CREDITS & 🙌 CONTRIBUTIONS**
+----
+Created by a cyber security educator and developer using LLM tooling to rapidly troubleshoot a production-breaking issue after the Rise December 2025 update.
+PRs are welcome.
+If your organisation has unique LMS quirks (e.g. Canvas, Moodle, Brightspace, LearnUpon, Cornerstone), feel free to open an issue so others benefit from shared fixes.
+
+----
+**💬 COMMUNITY THREAD**
+----
+This project was shared to support the Articulate community discussion on the Dec-2025 xAPI structural changes.
+See the discussion here:
+
+https://community.articulate.com/discussions/discuss/rise-course-xapi-file-structure-change/1244243/replies/1244678
