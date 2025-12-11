@@ -80,11 +80,11 @@ Folders contain .keep files so GitHub preserves directory structure.
 3. If nothing shows or Python can't be found, try installing from the Microsoft Store.
 4. Repeat **python --versio**n until you have a version detected.
 5. Ensure fix_scorm_package.py and diagnose_package.py and the DONOR_PACKAGE_FOLDER and OUTPUT_FOLDER and NEW_RISE_FOLDER are on your Desktop.
-	**DONOR_PACKAGE_FOLDER** is the location where your pre-December2025 update course files will be.
+	**DONOR_PACKAGE_FOLDER** is the location where your pre-December2025 update course files will be placed.
 	**OUTPUT_FOLDER** is blank
-	**NEW_RISE_FOLDER** is blank, the destination for your Rise360 package contents.
+	**NEW_RISE_FOLDER** is blank, and will be the destination for your Rise360 package contents.
 6. Extract desired Rise360 xapi/TinCan package (contents, not folder) into NEW_RISE_FOLDER.
-7. Extract pre-December2025 Rise360 package contents into** DONOR_PACKAGE_FOLDER**
+7. Extract pre-December2025 Rise360 package contents into **DONOR_PACKAGE_FOLDER**
 8. Everything is set up, move onto running the scripts below.
 
 ----
@@ -167,7 +167,7 @@ ONEDRIVE ERROR (see below): <br><br>
 **⚠️ Known Issues**
 ---
 ### OneDrive / WinError 5 (`Access is denied: 'OUTPUT_FOLDER'`)
-OneDrive can cause issues and say 'ACCESS DENIED' to folders, you may need to do this in a folder not being backed up by OneDrive (only if you have issues).**
+OneDrive can cause issues and say 'ACCESS DENIED' to folders, you may need to do this in a folder not being backed up by OneDrive **(only if you have issues).**
 
 If you run the script from a OneDrive-synced Desktop or folder, Windows can prevent
 the script from deleting or recreating the `OUTPUT_FOLDER`. This shows up as:
